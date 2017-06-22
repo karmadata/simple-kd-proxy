@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/karmadata/simple-kd-proxy/issues"
   },
-  "homepage": "https://github.com/karmadata/simple-kd-proxy#readme"
+  "homepage": "https://github.com/karmadata/simple-kd-proxy#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
 }
