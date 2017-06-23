@@ -9,7 +9,7 @@ It also serves as a sample for how partner server can obtain bearer tokens to ac
 # How It Works
 * index.js - a simple Express server that exposes a /kdapi endpoint that proxies user requests to the actual KD API server, and returns the result from the KD API server to the user.
 * KD API server - the actual API server that is hosted by KarmaData. It expects an OAuth token for each API request
-* tokenprocess.js - this process sits in the background and periodically queries the Thorz identity server to refresh the auth token
+* Thorz.apiTokenProcess - this process sits in the background and periodically queries the Thorz identity server to refresh the auth token (refers to npm package thorz)
 * Thorz - the identity server that hands out OAuth tokens
 
 
