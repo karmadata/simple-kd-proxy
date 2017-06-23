@@ -23,10 +23,10 @@ tokenprocess.start({
 // ---------------------------------------------------
 let authorized = true
 
-app.post('/*', async function(req, res) {
+app.post('/kdapi/*', async function(req, res) {
   try {
     if (!authorized) throw new Error("Not authorized")
-    let newurl = env.KD_API_URL + req.url
+    let newurl = env.KD_API_URL + req.url.substring(6)
     let body = Object.keys(req.body).length === 0 ? null : req.body
     let response = await requestp({
       method: 'POST',
