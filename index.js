@@ -3,7 +3,7 @@ let env = process.env
 const express = require('express')
 const requestp = require('request-promise')
 const bodyParser = require('body-parser')
-const tokenprocess = require('./tokenprocess')
+const tokenprocess = require('thorz').apiTokenProcess
 
 
 // set up express
