@@ -1,10 +1,30 @@
-// the background process that requests authentication token
+// ---------------------------------------------------------
+// tokenprocess
+// when started, this process sits in the background and
+// periodically queries the Thorz identity server for
+// new OAuth token
+// when other processes needs a working token, they can
+// simply obtain the token from this process
+// this simplifies the authorization process, and avoids
+// some potential race conditions
+// --------------
+// tokenprocess.start(options) - starts background process
+// expected options:
+// - authorization_url
+// - client_id
+// - client_secret
+// - fetch_interval
+// ---------------------------------------------------------
 const requestp = require('request-promise')
+
 
 let bearerToken = null
 let timer = null
 let opts = null
 
+
+// this function fetches the token from OAuth server, but only sets it
+// if successful, just in case there is some server/network error
 async function fetchToken() {
   try {
     let result = await requestp({
@@ -28,6 +48,8 @@ async function fetchToken() {
   }
 }
 
+
+// starts the background process
 function start(options) {
   opts = options
   fetchToken()
@@ -36,6 +58,7 @@ function start(options) {
   }
 }
 
+// stops the background process
 function stop() {
   if (timer !== null) {
     clearInterval(timer)
@@ -43,6 +66,7 @@ function stop() {
   }
 }
 
+// calls this function to get current token
 function getToken() {
   return bearerToken
 }

@@ -1,21 +1,24 @@
 require('dotenv').config()
+let env = process.env
 const express = require('express')
 const requestp = require('request-promise')
 const bodyParser = require('body-parser')
 const tokenprocess = require('./tokenprocess')
 
 
+// set up express
 var app = express()
-
 app.use(bodyParser.json())
 
-let env = process.env
+
+// start background auth token process
 tokenprocess.start({
   authorization_url: env.KD_THORZ_AUTHORIZATION_URL,
   client_id: env.KD_THORZ_CLIENT_ID,
   client_secret: env.KD_THORZ_CLIENT_SECRET,
   fetch_interval: 600   // every 10 minutes
 })
+
 
 // ---------------------------------------------------
 // This sample will proxy anybody within the network.
